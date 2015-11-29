@@ -1,0 +1,28 @@
+{
+  "name": "mkrb",
+  "version": "0.1.0",
+  "description": "A command line utility to build or install a Ruby engine.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "mkrb": "bin/mkrb"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubinius/mkrb.git"
+  },
+  "keywords": [
+    "ruby",
+    "install",
+    "build",
+    "make"
+  ],
+  "author": "Brian Shirai",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/rubinius/mkrb/issues"
+  },
+  "homepage": "https://github.com/rubinius/mkrb#README.md"
+}
