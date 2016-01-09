@@ -1,3 +1,119 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "mkrb - coming soon..."
+MKRB_VERSION="1"
+
+function mkrb_install {
+  echo "installing: engine: $ENGINE, version: $VERSION, switcher: $SWITCHER, source: $SOURCE"
+}
+
+function mkrb_usage {
+  cat >&2 <<EOM
+Usage: $1 engine [version] [options]
+
+  where:
+    engine                    The Ruby engine to install, in the following set:
+                              { rbx|rubinius, ruby, jruby }.
+    version                   The engine version to install. If no version is provided,
+                              installs the lastest stable release.
+
+    -b, --binary              Install a binary if it exists or fail. Without this option
+                              and without -m, installing a binary is the default, with
+                              automatic fallback to installing from source. With this
+                              option, only a binary is installed.
+    -m, --make                Build from source, do not install a binary
+    -s, --switcher SWITCHER   The Ruby engine switcher to install for, in the
+                              following set: { chrb, chruby, rbenv, rvm }.
+    -v, --version             Print the $1 version.
+    -h, --help                Print this help.
+
+  examples:
+    $ mkrb rbx              # Installs the latest version of Rubinius, or prints that it's
+                            # already installed.
+
+    $ mkrb rbx -s chruby    # Same as above. The location for the install is the default for
+                            # the chruby Ruby switcher.
+
+    $ mkrb rbx 3.2          # Install version 3.2 of Rubinius.
+
+    $ mkrb rbx -b           # Install the latest Rubinius binary for this platform, or fail
+                            # if the binary doesn't exist.
+
+EOM
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  cmd="${0##*/}"
+
+  case "$1" in
+    rbx|rubinius)
+      ENGINE=rbx
+      ;;
+    ruby)
+      ENGINE=ruby
+      ;;
+    jruby)
+      ENGINE=jruby
+      ;;
+    *)
+      mkrb_usage "$cmd"
+      exit 1
+      ;;
+  esac
+
+  shift
+
+  if [ -n "$1" ]; then
+    VERSION=$(echo "$1" | \
+      egrep -o '^[[:digit:]]+\.[[:digit:]]+(\.[[:digit:]]+(\.[[:digit:]]+)?)?$')
+
+    if [ $? -ne 0 ]; then
+      VERSION=latest
+    else
+      shift
+    fi
+  fi
+
+  SOURCE=binary_or_source
+  SWITCHER=chrb
+
+  while (( $# > 0 )); do
+    case "$1" in
+      -b|--binary)
+        SOURCE=binary
+        shift
+        ;;
+      -i|--install)
+        ;;
+      -m|--make)
+        SOURCE=source
+        shift
+        ;;
+      -s|--switcher)
+        SWITCHER=$(echo "$2" | egrep -o '^(chrb|chruby|rbenv|rvm)$')
+
+        if [ $? -ne 0 ]; then
+          echo "invalid Ruby switcher specified: $2" >&2
+          mkrb_usage "$cmd"
+          exit 1
+        fi
+
+        shift 2
+        ;;
+      -v|--version)
+        echo "$cmd: version $MKRB_VERSION"
+        shift
+        ;;
+      -h|--help)
+        mkrb_usage "$cmd"
+        shift
+        ;;
+      *)
+        echo "unknown option: $1"
+        mkrb_usage "$cmd"
+        exit 1
+        ;;
+    esac
+  done
+
+  mkrb_install
+fi
