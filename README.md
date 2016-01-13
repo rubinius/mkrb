@@ -18,9 +18,9 @@ A tool to install things should not be hard to install. You can install mkrb in 
 
 1. with RubyGems
 1. with NPM
-1. from source code
 1. with Homebrew
 1. with curl | bash
+1. from source code
 
 ### Install with RubyGems
 
@@ -38,10 +38,6 @@ If you have [NPM](https://npmjs.org) installed, installing mkrb is simple:
 
 If you don't want mkrb installed globally, remove the `-g` from the above command.
 
-### Install from source
-
-Copy the `bin/mkrb` script to wherever you want it.
-
 ### Install with Homebrew
 
 We'd really love to give you the ability to install with Homebrew but they have some odd rules about projects they accept. We'll work on this, but if you can help, that would be appreciated.
@@ -49,6 +45,10 @@ We'd really love to give you the ability to install with Homebrew but they have 
 ### Install with `curl | bash`
 
 Coming soon.
+
+### Install from source
+
+Copy the `bin/mkrb` script to wherever you want it.
 
 ## Help
 
