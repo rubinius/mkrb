@@ -6,9 +6,7 @@ platform, or alternatively, builds the Ruby engine from source code.
 
 ## Code of Conduct
 
-This project is maintained by the [Rubinius](http://rubinius.com) project and
-participation is governed by the [Rubinius Code of
-Conduct](http://rubinius.com/code-of-conduct/).
+Participation in this project is governed by the [Rubinius Code of Conduct](http://rubinius.com/code-of-conduct/).
 
 
 ## Installation
