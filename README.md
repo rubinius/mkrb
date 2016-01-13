@@ -1,4 +1,9 @@
+> Complain about the way other people make software by making software. &mdash; Andre Torrez
+
+[An actual quote](http://notes.torrez.org/2011/04/an-empathetic-plan.html)
+
 # mkrb: A Tool to Build or Install a Ruby Engine
+
 
 The `mkrb` utility installs a pre-built binary of a Ruby engine for your
 platform, or alternatively, builds the Ruby engine from source code.
