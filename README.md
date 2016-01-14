@@ -174,7 +174,7 @@ Principles:
 * isolate
 * ask, don't tell
 
-Application of these principles and assumptions should ensure, for instance, that changing unrelated code doesn't repeatedly break other code. Or that we never assume when the user requests that we install Ruby that they actually wanted us to install a new package manager for them. Seriously, what the fock? Or that we somehow know better than the software authors how to focking build the focking software.
+Application of these principles and assumptions should ensure, for instance, that changing unrelated code doesn't repeatedly break other code. Or that we never assume when the user requests that we install Ruby that they actually wanted us to install a new package manager for them. Seriously, why? Or that we somehow know better than the software authors how to build their software.
 
 ### How mkrb Works
 
